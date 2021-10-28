@@ -29,6 +29,7 @@ target_compile_definitions(juce_plugin_modules
         JUCE_USE_CURL=0
         JUCE_JACK=1
         JUCE_ALSA=1
+        JUCE_MODAL_LOOPS_PERMITTED=0
         JucePlugin_Manufacturer="${COMPANY_NAME}"
         JucePlugin_VersionString="${CMAKE_PROJECT_VERSION}"
         JucePlugin_Name="${PRODUCT_NAME}"
