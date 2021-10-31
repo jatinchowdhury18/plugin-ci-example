@@ -19,10 +19,13 @@ stages:
         matrix:
           mac:
             imageName: 'macOS-latest'
+            isMac: True
           windows:
             imageName: 'windows-latest'
+            isWindows: True
           linux:
             imageName: 'ubuntu-latest'
+            isLinux: True
       
       pool:
         vmImage: $(imageName)
@@ -31,6 +34,12 @@ stages:
         - checkout: self
           fetchDepth: 1
           submodules: recursive
+        
+        - bash: |
+            sudo apt-get update
+            sudo apt install libasound2-dev libcurl4-openssl-dev libx11-dev libxinerama-dev libxext-dev libfreetype6-dev libwebkit2gtk-4.0-dev libglu1-mesa-dev libjack-jackd2-dev lv2-dev
+          condition: variables.isLinux
+          displayName: Install Linux Deps
         
         - bash: cmake -Bbuild
           displayName: CMake configure
