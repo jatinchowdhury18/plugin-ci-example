@@ -14,14 +14,10 @@ before_script:
  - apt-get install --yes cmake
  - apt-get install --yes libasound2-dev libcurl4-openssl-dev libx11-dev libxinerama-dev libxext-dev libfreetype6-dev libwebkit2gtk-4.0-dev libglu1-mesa-dev libjack-jackd2-dev lv2-dev
 
-configure:
-  stage: configure
-  script:
-    - cmake -Bbuild
-
 build:
   stage: build
   script:
+    - cmake -Bbuild
     - cmake --build build --parallel 4
   
   # artifacts:
