@@ -17,6 +17,7 @@ before_script:
 build:
   stage: build
   script:
+    - cmake --version
     - cmake -Bbuild
     - cmake --build build --parallel 4
   
