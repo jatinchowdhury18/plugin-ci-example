@@ -1,10 +1,17 @@
 # SimplePlugin
 
-![CI](https://github.com/Chowdhury-DSP/SimplePlugin/workflows/CI/badge.svg)
+![github-actions](https://github.com/jatinchowdhury18/plugin-ci-example/workflows/CI/badge.svg)
+![gitlab-actions](https://gitlab.com/Chowdhury-DSP/plugin-ci-example/badges/main/pipeline.svg)
+[![Build Status](https://dev.azure.com/jatinchowdhury180362/plugin-ci-example/_apis/build/status/jatinchowdhury18.plugin-ci-example?branchName=main)](https://dev.azure.com/jatinchowdhury180362/plugin-ci-example/_build/latest?definitionId=1&branchName=main)
 [![License](https://img.shields.io/badge/License-BSD-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-This repository contains template code for building a Chowdhury DSP
-audio plugin.
+This repository contains a simple audio plugin with examples
+for how to use various Continuous Integration services.
+
+Currently the following CI services are supported:
+- GitHub Actions
+- Azure Pipelines
+- GitLab CI
 
 ## Building
 
@@ -12,8 +19,8 @@ To build from scratch, you must have CMake installed.
 
 ```bash
 # Clone the repository
-$ git clone https://github.com/Chowdhury-DSP/SimplePlugin.git
-$ cd SimplePlugin
+$ git clone https://github.com/jatinchowdhury18/plugin-ci-example.git
+$ cd plugin-ci-example
 
 # initialize and set up submodules
 $ git submodule update --init --recursive
@@ -25,5 +32,5 @@ $ cmake --build build --config Release
 
 ## License
 
-SimplePlugin is open source, and is licensed under the BSD 3-clause license.
-Enjoy!
+The code in this repository is open source, and is licensed
+under the BSD 3-clause license. Enjoy!
