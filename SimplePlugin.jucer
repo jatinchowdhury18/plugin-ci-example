@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="luqvtz" name="SimplePlugin" projectType="audioplug" useAppConfig="0"
+              jucerFormatVersion="1" headerPath="../../src/" cppLanguageStandard="17">
+  <MAINGROUP id="YenzOu" name="SimplePlugin">
+    <GROUP id="{22A07084-A576-0A41-B3A1-707C223FD11B}" name="res">
+      <FILE id="LClGjN" name="gui.xml" compile="0" resource="1" file="res/gui.xml"/>
+    </GROUP>
+    <GROUP id="{ABC7DFFF-DD44-21C7-5D90-1729E9340541}" name="src">
+      <FILE id="FvnodX" name="pch.h" compile="0" resource="0" file="src/pch.h"/>
+      <FILE id="fSj9JP" name="SimplePlugin.cpp" compile="1" resource="0"
+            file="src/SimplePlugin.cpp"/>
+      <FILE id="ftvj7d" name="SimplePlugin.h" compile="0" resource="0" file="src/SimplePlugin.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"
+               FOLEYS_SHOW_GUI_EDITOR_PALLETTE="0" FOLEYS_ENABLE_BINARY_DATA="1"/>
+  <EXPORTFORMATS>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="NewProject"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="NewProject"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="chowdsp_utils" path="modules"/>
+        <MODULEPATH id="juce_core" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="modules/JUCE/modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="modules"/>
+        <MODULEPATH id="juce_dsp" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="modules/JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="NewProject"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="NewProject"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="chowdsp_utils" path="modules"/>
+        <MODULEPATH id="juce_core" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="modules/JUCE/modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="modules"/>
+        <MODULEPATH id="juce_dsp" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="modules/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2019>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="NewProject"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="NewProject"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="chowdsp_utils" path="modules"/>
+        <MODULEPATH id="juce_core" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="modules/JUCE/modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="modules"/>
+        <MODULEPATH id="juce_dsp" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="modules/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="modules/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="chowdsp_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="foleys_gui_magic" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+</JUCERPROJECT>
