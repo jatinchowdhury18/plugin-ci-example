@@ -1,0 +1,39 @@
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/C++.gitlab-ci.yml
+
+# use the official gcc image, based on debian
+# can use verions as well, like gcc:5.2
+# see https://hub.docker.com/_/gcc/
+
+image: gcc
+
+before_script:
+ - apt-get update --yes
+ - apt-get install --yes cmake
+ - apt-get install --yes libasound2-dev libcurl4-openssl-dev libx11-dev libxinerama-dev libxext-dev libfreetype6-dev libwebkit2gtk-4.0-dev libglu1-mesa-dev libjack-jackd2-dev lv2-dev
+
+configure:
+  stage: configure
+  script:
+    - cmake -Bbuild
+
+build:
+  stage: build
+  script:
+    - cmake --build build --parallel 4
+  
+  # artifacts:
+  #   paths:
+  #     - mybinary
+  #     # depending on your build setup it's most likely a good idea to cache outputs to reduce the build time
+  #     # cache:
+  #     #   paths:
+  #     #     - "*.o"
+
+# run tests using the binary built before
+# test:
+#   stage: test
+#   script:
+#     - ./runmytests.sh
