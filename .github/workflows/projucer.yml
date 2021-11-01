@@ -40,8 +40,6 @@ jobs:
     - name: Add msbuild to PATH
       if: runner.os == 'Windows'
       uses: microsoft/setup-msbuild@v1.0.3
-      with:
-        vs-version: '[16.4,16.5)'
 
     - name: Set up Xcode
       if: runner.os == 'MacOS'
@@ -57,13 +55,13 @@ jobs:
     - name: Build Projucer (MacOS)
       if: runner.os == 'MacOS'
       shell: bash
-      run: xcodebuild -project Projucer.xcodeproj | xcpretty
+      run: xcodebuild -project Projucer.xcodeproj -jobs 4 | xcpretty
       working-directory: modules/JUCE/extras/Projucer/Builds/MacOSX
     
     - name: Build Projucer (Windows)
       if: runner.os == 'Windows'
       shell: bash
-      run: msbuild.exe Projucer.sln
+      run: msbuild.exe -v:normal -m:4 Projucer.sln
       working-directory: modules/JUCE/extras/Projucer/Builds/VisualStudio2019
     
     - name: Build Projucer (Linux)
