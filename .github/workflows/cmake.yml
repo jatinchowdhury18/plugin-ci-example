@@ -50,3 +50,6 @@ jobs:
     - name: Validate
       if: runner.os == 'Windows'
       run: bash scripts/validate.sh
+
+    - name: Test
+      run: ./build/SimplePlugin --unit-tests --all
