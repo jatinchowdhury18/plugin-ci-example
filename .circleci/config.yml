@@ -53,6 +53,10 @@ jobs:
       - run: git submodule sync
       - run: git submodule update --init
 
+      # install cmake
+      - run: choco install cmake -y
+      - run: $env:Path+=";$Env:ProgramFiles\CMake\bin"; ./makeall.bat
+
       # build plugins
       - run: cmake -Bbuild
       - run: cmake --build build --parallel 4
@@ -64,5 +68,5 @@ workflows:
   build-workflow:
     jobs:
       - build-linux
-      - build-macos
       - build-windows
+      # - build-macos # need to pay extra for Mac...
