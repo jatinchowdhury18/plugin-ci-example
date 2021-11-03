@@ -39,7 +39,7 @@ jobs:
 
       # build plugins
       - run: cmake -Bbuild
-      - run: cmake --build build --parallel 4
+      - run: cmake --build build --config Release --parallel 4
 
       # run tests
       - run: ./build/SimplePlugin --unit-tests --all
@@ -61,11 +61,9 @@ jobs:
             Invoke-WebRequest -URI https://github.com/Kitware/CMake/releases/download/v3.16.4/cmake-3.16.4-win64-x64.zip -OutFile $Env:HOMEPATH\cmake-3.16.4-win64-x64.zip
             Expand-Archive $Env:HOMEPATH\cmake-3.16.4-win64-x64.zip -DestinationPath "$Env:ProgramFiles"
             Rename-Item "$Env:ProgramFiles\cmake-3.16.4-win64-x64" -NewName CMake
-            New-Alias -Name cmake -Value "$Env:ProgramFiles\CMake\bin\cmake.exe"
 
       # build plugins
-      - run: cmake -Bbuild
-      - run: cmake --build build --parallel 4
+      - run: .circleci\win-build.ps1
 
       # run tests
       - run: ./build/SimplePlugin --unit-tests --all
