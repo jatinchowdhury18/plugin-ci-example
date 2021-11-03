@@ -19,7 +19,7 @@ public:
         MidiBuffer midiBuffer;
         AudioBuffer<float> testBuffer (1, nSamples);
         auto* testData = testBuffer.getWritePointer (0);
-        
+
         auto processBuffer = [&] (int numBlocks)
         {
             for (int i = 0; i < numBlocks; ++i)
@@ -34,10 +34,10 @@ public:
         constexpr float maxError = 0.2f;
         proc->getParameters()[0]->setValue (0.0f); // -12 dB
         expectWithinAbsoluteError (processBuffer (10), 0.25f, maxError, "-12dB value is incorrect!");
-        
+
         proc->getParameters()[0]->setValue (1.0f); // +12 dB
         expectWithinAbsoluteError (processBuffer (10), 4.0f, maxError, "+12dB value is incorrect!");
-        
+
         proc->getParameters()[0]->setValue (0.5f); // 0 dB
         expectWithinAbsoluteError (processBuffer (10), 1.0f, maxError, "0dB value is incorrect!");
     }
