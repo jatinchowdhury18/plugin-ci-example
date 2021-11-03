@@ -23,17 +23,4 @@ build:
     - cmake --version
     - cmake -Bbuild
     - cmake --build build --parallel 4
-  
-  # artifacts:
-  #   paths:
-  #     - mybinary
-  #     # depending on your build setup it's most likely a good idea to cache outputs to reduce the build time
-  #     # cache:
-  #     #   paths:
-  #     #     - "*.o"
-
-# run tests using the binary built before
-# test:
-#   stage: test
-#   script:
-#     - ./runmytests.sh
+    - ./build/SimplePlugin --unit-tests --all
