@@ -34,6 +34,8 @@ void SimplePlugin::releaseResources()
 
 void SimplePlugin::processAudioBlock (AudioBuffer<float>& buffer)
 {
+    gain.setGainDecibels (*gainParam);
+
     dsp::AudioBlock<float> block { buffer };
     dsp::ProcessContextReplacing<float> context { block };
     gain.process (context);

@@ -46,3 +46,6 @@ stages:
           
         - bash: cmake --build build --config Release --parallel 4
           displayName: CMake Build
+
+        - bash: ./build/SimplePlugin --unit-tests --all
+          displayName: Run Tests
