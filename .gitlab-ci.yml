@@ -23,8 +23,4 @@ build:
     - cmake --version
     - cmake -Bbuild
     - cmake --build build --parallel 4
-
-test:
-  stage: test
-  script:
     - ./build/SimplePlugin --unit-tests --all

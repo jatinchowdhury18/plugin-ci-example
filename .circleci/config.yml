@@ -1,0 +1,68 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.3.0
+
+jobs:
+  build-linux:
+    machine:
+      image: ubuntu-2004:202107-02
+
+    steps:
+      # check out code with submodules
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+
+      # install linux dependencies
+      - run: sudo apt-get update
+      - run: sudo apt install cmake libasound2-dev libcurl4-openssl-dev libx11-dev libxinerama-dev libxext-dev libfreetype6-dev libwebkit2gtk-4.0-dev libglu1-mesa-dev libjack-jackd2-dev lv2-dev
+      - run: sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
+      - run: sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
+
+      # build plugins
+      - run: cmake -Bbuild
+      - run: cmake --build build --parallel 4
+
+      # run tests
+      - run: ./build/SimplePlugin --unit-tests --all
+
+  build-macos:
+    macos:
+      xcode: "11.3.0"
+
+    steps:
+      # check out code with submodules
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+
+      # build plugins
+      - run: cmake -Bbuild
+      - run: cmake --build build --parallel 4
+
+      # run tests
+      - run: ./build/SimplePlugin --unit-tests --all
+
+  build-windows:
+    executor: win/default
+
+    steps:
+      # check out code with submodules
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+
+      # build plugins
+      - run: cmake -Bbuild
+      - run: cmake --build build --parallel 4
+
+      # run tests
+      - run: ./build/SimplePlugin --unit-tests --all
+
+workflows:
+  build-workflow:
+    jobs:
+      - build-linux
+      - build-macos
+      - build-windows
