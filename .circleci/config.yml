@@ -63,7 +63,7 @@ jobs:
             Rename-Item "$Env:ProgramFiles\cmake-3.16.4-win64-x64" -NewName CMake
 
       # build plugins
-      - run: .circleci\win-build.ps1
+      - run: scripts\win-build.ps1
 
       # run tests
       - run: ./build/SimplePlugin --unit-tests --all
