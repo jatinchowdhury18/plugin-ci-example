@@ -6,6 +6,29 @@ set(CMAKE_CXX_STANDARD 17)
 set(COMPANY_NAME "chowdsp")
 set(PRODUCT_NAME "SimplePlugin")
 
+option(CLAP_WRAP "Wrap a CLAP plugin" OFF)
+if(CLAP_WRAP)
+    # usage: cmake -Bbuild-clap -G<generator> -DCMAKE_BUILD_TYPE=<Debug|Release> -DCLAP_WRAP=ON
+    #        cmake --build build-clap --config <Debug|Release>
+    message(STATUS "Building a CLAP!")
+
+    set(PATH_TO_JUCE modules/JUCE)
+    set(PATH_TO_CLAP_EXTENSIONS modules/clap-juce-extensions)
+
+    include(cmake/JucerClap.cmake)
+    create_jucer_clap_target(
+        TARGET SimplePlugin
+        GENERATOR VisualStudio2019
+        PLUGIN_NAME "Simple Plugin"
+        MANUFACTURER_NAME chowdsp
+        VERSION_STRING "1.0.0"
+        CLAP_ID "org.chowdsp.SimplePlugin"
+        CLAP_FEATURES audio-effect utility
+    )
+
+    return()
+endif()
+
 add_subdirectory(modules)
 
 # juce_set_vst2_sdk_path(C:/SDKs/VST_SDK/VST2_SDK)

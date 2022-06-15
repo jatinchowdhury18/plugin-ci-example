@@ -5,6 +5,7 @@ on:
     branches:
     - main
     - develop
+    - clap-jucer
   pull_request:
     branches:
     - main
@@ -23,10 +24,13 @@ jobs:
         include:
           - os: ubuntu-latest
             jucer: "modules/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer"
+            clap_gen: "Unix Makefiles"
           - os: macos-latest
             jucer: "modules/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer"
+            clap_gen: "Xcode"
           - os: windows-latest
             jucer: "modules/JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Debug/App/Projucer.exe"
+            clap_gen: "Visual Studio 16 2019"
     
     steps:
     - name: Install Linux Deps
@@ -93,3 +97,16 @@ jobs:
       shell: bash
       run: make -j4
       working-directory: Builds/LinuxMakefile
+
+    - name: Get latest CMake
+      uses: lukka/get-cmake@latest
+
+    - name: Build CLAP
+      shell: bash
+      run: |
+        find Builds -type f
+        cmake -Bbuild-clap -G "$CLAP_GEN" -DCMAKE_BUILD_TYPE=Debug -DCLAP_WRAP=ON
+        cmake --build build --config Debug
+      env:
+        CLAP_GEN: ${{ matrix.clap_gen }}
+        
