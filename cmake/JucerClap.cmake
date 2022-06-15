@@ -92,25 +92,32 @@ endfunction()
 
 # use this function to create a CLAP from a jucer project
 function(create_jucer_clap_target)
-    set(oneValueArgs TARGET GENERATOR PLUGIN_NAME MANUFACTURER_NAME MANUFACTURER_URL VERSION_STRING)
+    set(oneValueArgs TARGET PLUGIN_NAME MANUFACTURER_NAME MANUFACTURER_URL VERSION_STRING)
     set(multiValueArgs CLAP_ID CLAP_FEATURES CLAP_MANUAL_URL CLAP_SUPPORT_URL)
 
     cmake_parse_arguments(CJA "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-    if("${CJA_GENERATOR}" STREQUAL "VisualStudio2019")
+    if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
+        message(WARNING "CMAKE_BUILD_TYPE not set... using Release by default")
+        set(CMAKE_BUILD_TYPE "Release")
+    endif()
+
+    if("${JUCER_GENERATOR}" STREQUAL "VisualStudio2019")
         find_library(PLUGIN_LIBRARY_PATH ${CJA_TARGET} "Builds/VisualStudio2019/x64/${CMAKE_BUILD_TYPE}/Shared Code")
-    elseif("${CJA_GENERATOR}" STREQUAL "Xcode")
-        find_library(PLUGIN_LIBRARY_PATH ${CJA_TARGET} "Builds/MacOSX/${CMAKE_BUILD_TYPE}")
-    elseif("${CJA_GENERATOR}" STREQUAL "LinuxMakefile")
+    elseif("${JUCER_GENERATOR}" STREQUAL "Xcode")
+        find_library(PLUGIN_LIBRARY_PATH ${CJA_TARGET} "Builds/MacOSX/build/${CMAKE_BUILD_TYPE}")
+    elseif("${JUCER_GENERATOR}" STREQUAL "LinuxMakefile")
         find_library(PLUGIN_LIBRARY_PATH ${CJA_TARGET} "Builds/LinuxMakefile/build")
+    elseif("${JUCER_GENERATOR}" STREQUAL "")
+        message(FATAL_ERROR "JUCER_GENERATOR variable must be set!")
     else()
         message(FATAL_ERROR "Unknown Generator!")
-    endif() # @TODO: other generators
+    endif()
 
     message(STATUS "Shared plugin lib path: ${PLUGIN_LIBRARY_PATH}")
 
-    add_subdirectory(${PATH_TO_JUCE})
-    add_subdirectory(${PATH_TO_CLAP_EXTENSIONS} EXCLUDE_FROM_ALL)
+    add_subdirectory(${PATH_TO_JUCE} clap_juce_juce)
+    add_subdirectory(${PATH_TO_CLAP_EXTENSIONS} clap_juce_clapext EXCLUDE_FROM_ALL)
 
     clap_juce_extensions_plugin_jucer(
         TARGET ${CJA_TARGET}

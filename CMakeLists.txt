@@ -15,10 +15,17 @@ if(CLAP_WRAP)
     set(PATH_TO_JUCE modules/JUCE)
     set(PATH_TO_CLAP_EXTENSIONS modules/clap-juce-extensions)
 
+    if(APPLE)
+        set(JUCER_GENERATOR "Xcode")
+    elseif(WIN32)
+        set(JUCER_GENERATOR "VisualStudio2019")
+    else() # Linux
+        set(JUCER_GENERATOR "LinuxMakefiles")
+    endif()
+
     include(cmake/JucerClap.cmake)
     create_jucer_clap_target(
         TARGET SimplePlugin
-        GENERATOR VisualStudio2019
         PLUGIN_NAME "Simple Plugin"
         MANUFACTURER_NAME chowdsp
         VERSION_STRING "1.0.0"

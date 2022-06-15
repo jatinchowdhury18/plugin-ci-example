@@ -28,7 +28,7 @@ jobs:
           - os: macos-latest
             jucer: "modules/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer"
             clap_gen: "Xcode"
-          - os: windows-latest
+          - os: windows-2019
             jucer: "modules/JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Debug/App/Projucer.exe"
             clap_gen: "Visual Studio 16 2019"
     
