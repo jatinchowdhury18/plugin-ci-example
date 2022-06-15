@@ -105,6 +105,6 @@ jobs:
       shell: bash
       run: |
         cmake -Bbuild-clap -G "$CLAP_GEN" -DCMAKE_BUILD_TYPE=Debug -DCLAP_WRAP=ON
-        cmake --build build --config Debug
+        cmake --build build-clap --config Debug
       env:
         CLAP_GEN: ${{ matrix.clap_gen }}
