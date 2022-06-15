@@ -54,7 +54,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        submodules: true
+        submodules: recursive
 
     - name: Build Projucer (MacOS)
       if: runner.os == 'MacOS'
@@ -104,9 +104,7 @@ jobs:
     - name: Build CLAP
       shell: bash
       run: |
-        find Builds -type f
         cmake -Bbuild-clap -G "$CLAP_GEN" -DCMAKE_BUILD_TYPE=Debug -DCLAP_WRAP=ON
         cmake --build build --config Debug
       env:
         CLAP_GEN: ${{ matrix.clap_gen }}
-        

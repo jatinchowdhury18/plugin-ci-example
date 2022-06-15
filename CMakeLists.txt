@@ -20,7 +20,7 @@ if(CLAP_WRAP)
     elseif(WIN32)
         set(JUCER_GENERATOR "VisualStudio2019")
     else() # Linux
-        set(JUCER_GENERATOR "LinuxMakefiles")
+        set(JUCER_GENERATOR "LinuxMakefile")
     endif()
 
     include(cmake/JucerClap.cmake)
