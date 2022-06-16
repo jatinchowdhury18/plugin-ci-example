@@ -6,3 +6,6 @@ JuceLibraryCode/
 # IDE settings
 .vscode/
 .idea/
+
+# Mac extras
+.DS_Store

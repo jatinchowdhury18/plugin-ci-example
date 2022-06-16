@@ -23,7 +23,7 @@ if(CLAP_WRAP)
         set(JUCER_GENERATOR "LinuxMakefile")
     endif()
 
-    include(cmake/JucerClap.cmake)
+    include(${PATH_TO_CLAP_EXTENSIONS}/cmake/JucerClap.cmake)
     create_jucer_clap_target(
         TARGET SimplePlugin
         PLUGIN_NAME "Simple Plugin"
