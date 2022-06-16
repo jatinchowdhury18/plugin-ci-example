@@ -27,7 +27,9 @@ if(CLAP_WRAP)
     create_jucer_clap_target(
         TARGET SimplePlugin
         PLUGIN_NAME "Simple Plugin"
+        PLUGIN_CODE "Smp1"
         MANUFACTURER_NAME chowdsp
+        MANUFACTURER_CODE Chow
         VERSION_STRING "1.0.0"
         CLAP_ID "org.chowdsp.SimplePlugin"
         CLAP_FEATURES audio-effect utility
