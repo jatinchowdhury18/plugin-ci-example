@@ -23,10 +23,13 @@ jobs:
         include:
           - os: ubuntu-latest
             jucer: "modules/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer"
+            clap_gen: "Unix Makefiles"
           - os: macos-latest
             jucer: "modules/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer"
-          - os: windows-latest
+            clap_gen: "Xcode"
+          - os: windows-2019
             jucer: "modules/JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Debug/App/Projucer.exe"
+            clap_gen: "Visual Studio 16 2019"
     
     steps:
     - name: Install Linux Deps
@@ -50,7 +53,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        submodules: true
+        submodules: recursive
 
     - name: Build Projucer (MacOS)
       if: runner.os == 'MacOS'
@@ -93,3 +96,14 @@ jobs:
       shell: bash
       run: make -j4
       working-directory: Builds/LinuxMakefile
+
+    - name: Get latest CMake
+      uses: lukka/get-cmake@latest
+
+    - name: Build CLAP
+      shell: bash
+      run: |
+        cmake -Bbuild-clap -G "$CLAP_GEN" -DCMAKE_BUILD_TYPE=Debug -DCLAP_WRAP=ON
+        cmake --build build-clap --config Debug
+      env:
+        CLAP_GEN: ${{ matrix.clap_gen }}

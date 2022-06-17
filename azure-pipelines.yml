@@ -21,7 +21,7 @@ stages:
             imageName: 'macOS-latest'
             isMac: True
           windows:
-            imageName: 'windows-latest'
+            imageName: 'windows-2019'
             isWindows: True
           linux:
             imageName: 'ubuntu-latest'
