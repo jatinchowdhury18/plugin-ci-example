@@ -16,11 +16,15 @@ before_script:
  - apt-get update --yes
  - apt-get install --yes cmake
  - apt-get install --yes libasound2-dev libcurl4-openssl-dev libx11-dev libxinerama-dev libxext-dev libfreetype6-dev libwebkit2gtk-4.0-dev libglu1-mesa-dev libjack-jackd2-dev lv2-dev
+ - |
+  wget https://github.com/Kitware/CMake/releases/download/v3.22.4/cmake-3.22.4-linux-x86_64.tar.gz
+  mkdir cmake-install
+  tar -xvzf cmake-3.22.4-linux-x86_64.tar.gz -C cmake-install
 
 build:
   stage: build
   script:
-    - cmake --version
-    - cmake -Bbuild
-    - cmake --build build --parallel 4
+    - cmake-install/cmake-3.22.4-linux-x86_64/bin/cmake --version
+    - cmake-install/cmake-3.22.4-linux-x86_64/bin/cmake -Bbuild
+    - cmake-install/cmake-3.22.4-linux-x86_64/bin/cmake --build build --parallel 4
     - ./build/SimplePlugin --unit-tests --all

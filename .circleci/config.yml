@@ -12,17 +12,26 @@ jobs:
       # check out code with submodules
       - checkout
       - run: git submodule sync
-      - run: git submodule update --init
+      - run: git submodule update --init --recursive
 
       # install linux dependencies
       - run: sudo apt-get update
-      - run: sudo apt install cmake libasound2-dev libcurl4-openssl-dev libx11-dev libxinerama-dev libxext-dev libfreetype6-dev libwebkit2gtk-4.0-dev libglu1-mesa-dev libjack-jackd2-dev lv2-dev
+      - run: sudo apt install libasound2-dev libcurl4-openssl-dev libx11-dev libxinerama-dev libxext-dev libfreetype6-dev libwebkit2gtk-4.0-dev libglu1-mesa-dev libjack-jackd2-dev lv2-dev
       - run: sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
       - run: sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
 
+      # install cmake
+      - run:
+          name: Download CMake
+          command: |
+            wget https://github.com/Kitware/CMake/releases/download/v3.22.4/cmake-3.22.4-linux-x86_64.tar.gz
+            mkdir cmake-install
+            tar -xvzf cmake-3.22.4-linux-x86_64.tar.gz -C cmake-install
+
       # build plugins
-      - run: cmake -Bbuild
-      - run: cmake --build build --parallel 4
+      - run: cmake-install/cmake-3.22.4-linux-x86_64/bin/cmake --version
+      - run: cmake-install/cmake-3.22.4-linux-x86_64/bin/cmake -Bbuild
+      - run: cmake-install/cmake-3.22.4-linux-x86_64/bin/cmake --build build --parallel 4
 
       # run tests
       - run: ./build/SimplePlugin --unit-tests --all
@@ -51,16 +60,16 @@ jobs:
       # check out code with submodules
       - checkout
       - run: git submodule sync
-      - run: git submodule update --init
+      - run: git submodule update --init --recursive
 
       # install cmake
       - run:
           name: Download CMake
           command: |
             $ProgressPreference = "SilentlyContinue"
-            Invoke-WebRequest -URI https://github.com/Kitware/CMake/releases/download/v3.16.4/cmake-3.16.4-win64-x64.zip -OutFile $Env:HOMEPATH\cmake-3.16.4-win64-x64.zip
-            Expand-Archive $Env:HOMEPATH\cmake-3.16.4-win64-x64.zip -DestinationPath "$Env:ProgramFiles"
-            Rename-Item "$Env:ProgramFiles\cmake-3.16.4-win64-x64" -NewName CMake
+            Invoke-WebRequest -URI https://github.com/Kitware/CMake/releases/download/v3.22.4/cmake-3.22.4-windows-x86_64.zip -OutFile $Env:HOMEPATH\cmake-3.22.4-windows-x86_64.zip
+            Expand-Archive $Env:HOMEPATH\cmake-3.22.4-windows-x86_64.zip -DestinationPath "$Env:ProgramFiles"
+            Rename-Item "$Env:ProgramFiles\cmake-3.22.4-windows-x86_64" -NewName CMake
 
       # build plugins
       - run: scripts\win-build.ps1

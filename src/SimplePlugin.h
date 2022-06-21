@@ -2,6 +2,7 @@
 
 #include <pch.h>
 
+class ModulatableParameter;
 class SimplePlugin : public chowdsp::PluginBase<SimplePlugin>
 {
 public:
@@ -16,7 +17,7 @@ public:
     AudioProcessorEditor* createEditor() override;
 
 private:
-    std::atomic<float>* gainParam = nullptr;
+    chowdsp::FloatParameter* gainParam = nullptr;
 
     dsp::Gain<float> gain;
 

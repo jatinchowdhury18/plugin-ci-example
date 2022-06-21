@@ -7,19 +7,13 @@ const String gainParamTag = "gain";
 
 SimplePlugin::SimplePlugin()
 {
-    gainParam = vts.getRawParameterValue (gainParamTag);
+    gainParam = dynamic_cast<chowdsp::FloatParameter*> (vts.getParameter (gainParamTag));
 }
 
 void SimplePlugin::addParameters (Parameters& params)
 {
     using namespace chowdsp::ParamUtils;
-    params.push_back (std::make_unique<VTSParam> (gainParamTag,
-                                                  "Gain",
-                                                  String(),
-                                                  NormalisableRange { -12.0f, 12.0f },
-                                                  0.0f,
-                                                  gainValToString,
-                                                  stringToGainVal));
+    createGainDBParameter (params, gainParamTag, "Gain", -12.0f, 12.0f, 0.0f);
 }
 
 void SimplePlugin::prepareToPlay (double sampleRate, int samplesPerBlock)
@@ -34,7 +28,7 @@ void SimplePlugin::releaseResources()
 
 void SimplePlugin::processAudioBlock (AudioBuffer<float>& buffer)
 {
-    gain.setGainDecibels (*gainParam);
+    gain.setGainDecibels (gainParam->getCurrentValue());
 
     dsp::AudioBlock<float> block { buffer };
     dsp::ProcessContextReplacing<float> context { block };

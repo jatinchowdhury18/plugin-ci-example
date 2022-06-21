@@ -6,5 +6,6 @@ if (-not (Get-Command cmake -ErrorAction SilentlyContinue)) {
     New-Alias -Name cmake -Value "$Env:ProgramFiles\CMake\bin\cmake.exe"
 }
 
+cmake --version
 cmake -Bbuild
 cmake --build build --config Release --parallel 4
