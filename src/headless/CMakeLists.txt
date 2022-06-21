@@ -22,6 +22,9 @@ target_include_directories(SimplePlugin_headless
     ../
     ../../modules
     ../../modules/JUCE/modules
+    ../../modules/chowdsp_utils/modules/common
+    ../../modules/chowdsp_utils/modules/plugin
+    ../../modules/chowdsp_utils/modules/gui
 )
 
 target_link_libraries(SimplePlugin_headless PUBLIC
