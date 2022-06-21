@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(COMPANY_NAME "chowdsp")
 set(PRODUCT_NAME "Simple Plugin")
 
-option(CLAP_WRAP "Wrap a CLAP plugin" OFF)
+option(CLAP_WRAP "Wrap a CLAP plugin from a Projucer build" OFF)
 if(CLAP_WRAP)
     # usage: cmake -Bbuild-clap -G<generator> -DCMAKE_BUILD_TYPE=<Debug|Release> -DCLAP_WRAP=ON
     #        cmake --build build-clap --config <Debug|Release>
