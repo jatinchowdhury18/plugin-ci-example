@@ -7,7 +7,6 @@
     <GROUP id="{0F9A297F-D7C9-9567-B304-6FBBC10065A6}" name="clap-libs">
       <GROUP id="{116191DC-3A5B-38AC-59FD-252C39744ED3}" name="clap">
         <FILE id="L2y5tL" name="main.c" compile="1" resource="0" file="modules/clap-juce-extensions/clap-libs/clap/src/main.c"/>
-        <FILE id="xsqCHN" name="main.cc" compile="1" resource="0" file="modules/clap-juce-extensions/clap-libs/clap/src/main.cc"/>
         <FILE id="FVv6OJ" name="plugin-template.c" compile="1" resource="0"
               file="modules/clap-juce-extensions/clap-libs/clap/src/plugin-template.c"/>
       </GROUP>
