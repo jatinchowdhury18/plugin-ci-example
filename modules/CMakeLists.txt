@@ -1,10 +1,12 @@
 add_subdirectory(JUCE)
-include(cmake/SubprojectVersion.cmake)
+juce_add_modules(foleys_gui_magic)
+add_subdirectory(chowdsp_utils)
+add_subdirectory(clap-juce-extensions EXCLUDE_FROM_ALL)
+
 subproject_version(JUCE juce_version)
 message(STATUS "VERSION for JUCE: ${juce_version}")
-
-juce_add_modules(foleys_gui_magic)
-juce_add_modules(chowdsp_utils)
+subproject_version(chowdsp_utils chowdsp_version)
+message(STATUS "VERSION for chowdsp: ${chowdsp_version}")
 
 include(cmake/WarningFlags.cmake)
 add_library(juce_plugin_modules STATIC)
@@ -13,9 +15,11 @@ target_link_libraries(juce_plugin_modules
         BinaryData
         juce::juce_audio_utils
         juce::juce_audio_plugin_client
-        juce::juce_opengl
         foleys_gui_magic
-        chowdsp_utils
+        chowdsp::chowdsp_plugin_base
+        chowdsp::chowdsp_parameters
+        chowdsp::chowdsp_foleys
+        clap_juce_extensions
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags

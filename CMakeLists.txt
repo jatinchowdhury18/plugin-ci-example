@@ -4,7 +4,7 @@ project(SimplePlugin VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(COMPANY_NAME "chowdsp")
-set(PRODUCT_NAME "SimplePlugin")
+set(PRODUCT_NAME "Simple Plugin")
 
 option(CLAP_WRAP "Wrap a CLAP plugin" OFF)
 if(CLAP_WRAP)
@@ -25,7 +25,7 @@ if(CLAP_WRAP)
 
     include(${PATH_TO_CLAP_EXTENSIONS}/cmake/JucerClap.cmake)
     create_jucer_clap_target(
-        TARGET SimplePlugin
+        TARGET "SimplePlugin"
         PLUGIN_NAME "Simple Plugin"
         PLUGIN_CODE "Smp1"
         MANUFACTURER_NAME chowdsp
@@ -67,6 +67,12 @@ juce_add_plugin(SimplePlugin
     FORMATS ${JUCE_FORMATS}
     PRODUCT_NAME "${PRODUCT_NAME}"
     LV2_URI https://github.com/Chowdhury-DSP/SimplePlugin
+)
+
+clap_juce_extensions_plugin(
+    TARGET SimplePlugin
+    CLAP_ID "org.chowdsp.SimplePlugin"
+    CLAP_FEATURES audio-effect utility
 )
 
 juce_generate_juce_header(SimplePlugin)

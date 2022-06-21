@@ -2,6 +2,7 @@
 
 #include <pch.h>
 
+class ModulatableParameter;
 class SimplePlugin : public chowdsp::PluginBase<SimplePlugin>
 {
 public:
@@ -13,10 +14,19 @@ public:
     void releaseResources() override;
     void processAudioBlock (AudioBuffer<float>& buffer) override;
 
+//#if HAS_CLAP_JUCE_EXTENSIONS
+//    bool supportsDirectProcess() override
+//    {
+//        return true;
+//    }
+//    clap_process_status clap_direct_process (const clap_process* process) noexcept override;
+//    void process_clap_event (const clap_event_header_t* e);
+//#endif
+
     AudioProcessorEditor* createEditor() override;
 
 private:
-    std::atomic<float>* gainParam = nullptr;
+    chowdsp::FloatParameter* gainParam = nullptr;
 
     dsp::Gain<float> gain;
 
