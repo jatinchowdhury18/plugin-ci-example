@@ -60,7 +60,7 @@ jobs:
       # check out code with submodules
       - checkout
       - run: git submodule sync
-      - run: git submodule update --init
+      - run: git submodule update --init --recursive
 
       # install cmake
       - run:
